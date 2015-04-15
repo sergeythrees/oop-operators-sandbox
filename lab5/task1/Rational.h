@@ -1,8 +1,11 @@
 #pragma once
-class CRational
+class CRational final
 {
 public:
 	CRational();
-	~CRational();
+	
+	int GetNumerator() const;
+	int GetDenominator() const;
+
 };
 
