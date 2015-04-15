@@ -2,10 +2,11 @@
 class CRational final
 {
 public:
-	CRational();
-	
+	CRational(int numerator = 0);
+
 	int GetNumerator() const;
 	int GetDenominator() const;
-
+private:
+	int m_numerator;
 };
 

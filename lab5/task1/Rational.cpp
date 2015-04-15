@@ -2,13 +2,14 @@
 #include "Rational.h"
 
 
-CRational::CRational()
+CRational::CRational(int numerator)
+	: m_numerator(numerator)
 {
 }
 
 int CRational::GetNumerator() const
 {
-	return 0;
+	return m_numerator;;
 }
 
 int CRational::GetDenominator() const
