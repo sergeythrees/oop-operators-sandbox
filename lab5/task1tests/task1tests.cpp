@@ -15,6 +15,7 @@ struct RationalFixture
 	равно нулю по умолчанию (0/1)
 	может быть созданно из целого в формате (n / 1)
 	может быть задано с указанием числителя и знаменателя
+	хранится в нормализованном виде
 	*/
 
 BOOST_FIXTURE_TEST_SUITE(Rational, RationalFixture)
@@ -71,3 +72,14 @@ BOOST_AUTO_TEST_CASE(CanBeDefinedByNumeratorAndDenominator)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_CASE(TestGCD)
+{
+	BOOST_CHECK_EQUAL(GCD(2, 3), 1u);
+	BOOST_CHECK_EQUAL(GCD(3, 2), 1u);
+	BOOST_CHECK_EQUAL(GCD(12, 8), 4u);
+	BOOST_CHECK_EQUAL(GCD(8, 12), 4u);
+	BOOST_CHECK_EQUAL(GCD(0, 2), 2u);
+	BOOST_CHECK_EQUAL(GCD(2, 0), 2u);
+	BOOST_CHECK_EQUAL(GCD(0, 0), 1u);
+}

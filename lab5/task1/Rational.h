@@ -11,3 +11,4 @@ private:
 	int m_denominator;
 };
 
+unsigned GCD(unsigned a, unsigned b);
