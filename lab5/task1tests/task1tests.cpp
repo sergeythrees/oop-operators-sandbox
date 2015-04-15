@@ -14,7 +14,8 @@ struct RationalFixture
   Рациональное число:
 	равно нулю по умолчанию (0/1)
 	может быть созданно из целого в формате (n / 1)
-*/
+	может быть задано с указанием числителя и знаменателя
+	*/
 
 BOOST_FIXTURE_TEST_SUITE(Rational, RationalFixture)
 
@@ -42,6 +43,30 @@ BOOST_AUTO_TEST_CASE(CanBeConstructedFromInteger)
 		CRational zero(0);
 		BOOST_CHECK_EQUAL(zero.GetNumerator(), 0);
 		BOOST_CHECK_EQUAL(zero.GetDenominator(), 1);
+	}
+}
+
+BOOST_AUTO_TEST_CASE(CanBeDefinedByNumeratorAndDenominator)
+{
+	{
+		CRational rational(5, 2);
+		BOOST_CHECK_EQUAL(rational.GetNumerator(), 5);
+		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
+	}
+	{
+		CRational rational(-5, 2);
+		BOOST_CHECK_EQUAL(rational.GetNumerator(), -5);
+		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
+	}
+	{
+		CRational rational(5, -2);
+		BOOST_CHECK_EQUAL(rational.GetNumerator(), -5);
+		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
+	}
+	{
+		CRational rational(-5, -2);
+		BOOST_CHECK_EQUAL(rational.GetNumerator(), 5);
+		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
 	}
 }
 
