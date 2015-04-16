@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Rational.h"
+#include <utility>
 
 
 CRational::CRational(int numerator, int denominator)
@@ -25,16 +26,10 @@ int CRational::GetDenominator() const
 
 unsigned GCD(unsigned a, unsigned b)
 {
-	if (a == 0 && b == 0)
-	{
-		return 1;
-	}
-
 	while (b != 0)
 	{
-		unsigned oldB = b;
-		b = a % b;
-		a = oldB;
+		std::swap(a, b);
+		b = b % a;
 	}
-	return a;
+	return (a != 0) ? a : 1;
 }
