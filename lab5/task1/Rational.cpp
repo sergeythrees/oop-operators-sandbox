@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Rational.h"
-#include <algorithm>
 
 
 CRational::CRational(int numerator, int denominator)
@@ -26,15 +25,16 @@ int CRational::GetDenominator() const
 
 unsigned GCD(unsigned a, unsigned b)
 {
-	unsigned curA = a, curB = b;
-	while (curA != 0 && curB != 0)
+	if (a == 0 && b == 0)
 	{
-		unsigned newA = curB % curA;
-		unsigned newB = curA;
-		curA = newA;
-		curB = newB;
+		return 1;
 	}
 
-	const unsigned maxVal = std::max(curA, curB);
-	return (maxVal == 0) ? 1 : maxVal;
+	while (b != 0)
+	{
+		unsigned oldB = b;
+		b = a % b;
+		a = oldB;
+	}
+	return a;
 }
