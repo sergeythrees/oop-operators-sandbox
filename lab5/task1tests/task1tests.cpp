@@ -83,3 +83,36 @@ BOOST_AUTO_TEST_CASE(TestGCD)
 	BOOST_CHECK_EQUAL(GCD(2, 0), 2u);
 	BOOST_CHECK_EQUAL(GCD(0, 0), 1u);
 }
+
+BOOST_AUTO_TEST_CASE(RationalsAreNormalizedAfterCreation)
+{
+	{
+		CRational r(6, 8);
+		BOOST_CHECK_EQUAL(r.GetNumerator(), 3);
+		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
+	}
+
+	{
+		CRational r(6, -8);
+		BOOST_CHECK_EQUAL(r.GetNumerator(), -3);
+		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
+	}
+
+	{
+		CRational r(-6, 8);
+		BOOST_CHECK_EQUAL(r.GetNumerator(), -3);
+		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
+	}
+
+	{
+		CRational r(-6, -8);
+		BOOST_CHECK_EQUAL(r.GetNumerator(), 3);
+		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
+	}
+
+	{
+		CRational r(-10, 20);
+		BOOST_CHECK_EQUAL(r.GetNumerator(), -1);
+		BOOST_CHECK_EQUAL(r.GetDenominator(), 2);
+	}
+}
