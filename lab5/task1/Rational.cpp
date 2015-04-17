@@ -12,6 +12,7 @@ CRational::CRational(int numerator, int denominator)
 		m_numerator = -m_numerator;
 		m_denominator = -m_denominator;
 	}
+	Normalize();
 }
 
 int CRational::GetNumerator() const
@@ -22,6 +23,13 @@ int CRational::GetNumerator() const
 int CRational::GetDenominator() const
 {
 	return m_denominator;
+}
+
+void CRational::Normalize()
+{
+	const int gcd = GCD(abs(m_numerator), m_denominator);
+	m_numerator /= gcd;
+	m_denominator /= gcd;
 }
 
 unsigned GCD(unsigned a, unsigned b)

@@ -188,6 +188,9 @@ public:
 private:
 	int m_numerator;
 	int m_denominator;
+
+	// Нормализует рациональное число
+	void Normalize();
 };
 
 // Вычисляет наибольший общий знаменатель чисел a и b
