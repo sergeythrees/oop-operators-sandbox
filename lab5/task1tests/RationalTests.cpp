@@ -4,10 +4,17 @@
 #include "stdafx.h"
 #include "../task1/Rational.h"
 
-struct RationalFixture
+BOOST_AUTO_TEST_CASE(Test_Greates_Common_Denominator)
 {
-	CRational defaultRational;
-};
+	BOOST_CHECK_EQUAL(GCD(2, 3), 1u);
+	BOOST_CHECK_EQUAL(GCD(3, 2), 1u);
+	BOOST_CHECK_EQUAL(GCD(12, 8), 4u);
+	BOOST_CHECK_EQUAL(GCD(8, 12), 4u);
+	BOOST_CHECK_EQUAL(GCD(0, 2), 2u);
+	BOOST_CHECK_EQUAL(GCD(2, 0), 2u);
+	BOOST_CHECK_EQUAL(GCD(0, 0), 1u);
+}
+
 
 
 /*
@@ -18,58 +25,38 @@ struct RationalFixture
 	хранится в нормализованном виде
 	*/
 
-BOOST_FIXTURE_TEST_SUITE(Rational, RationalFixture)
-
-BOOST_AUTO_TEST_CASE(IsEqualToZeroByDeafault)
+void VerifyRational(const CRational & r, int expectedNumerator, int expectedDenominator)
 {
-	BOOST_CHECK_EQUAL(defaultRational.GetNumerator(), 0);
-	BOOST_CHECK_EQUAL(defaultRational.GetDenominator(), 1);
+	BOOST_CHECK_EQUAL(r.GetNumerator(), expectedNumerator);
+	BOOST_CHECK_EQUAL(r.GetDenominator(), expectedDenominator);
 }
 
-BOOST_AUTO_TEST_CASE(CanBeConstructedFromInteger)
-{
+BOOST_AUTO_TEST_SUITE(Rational_number)
+	BOOST_AUTO_TEST_CASE(is_0_by_default)
 	{
-		CRational positive(10);
-		BOOST_CHECK_EQUAL(positive.GetNumerator(), 10);
-		BOOST_CHECK_EQUAL(positive.GetDenominator(), 1);
+		VerifyRational(CRational(), 0, 1);
 	}
-
+	BOOST_AUTO_TEST_CASE(can_be_constructed_from_integer)
 	{
-		CRational negative(-10);
-		BOOST_CHECK_EQUAL(negative.GetNumerator(), -10);
-		BOOST_CHECK_EQUAL(negative.GetDenominator(), 1);
+		VerifyRational(CRational(10), 10, 1);
+		VerifyRational(CRational(-10), -10, 1);
+		VerifyRational(CRational(0), 0, 1);
 	}
-
+	BOOST_AUTO_TEST_CASE(can_be_constructed_with_numerator_and_denominator)
 	{
-		CRational zero(0);
-		BOOST_CHECK_EQUAL(zero.GetNumerator(), 0);
-		BOOST_CHECK_EQUAL(zero.GetDenominator(), 1);
+		VerifyRational(CRational(5, 2), 5, 2);
+		VerifyRational(CRational(-5, 2), -5, 2);
+		VerifyRational(CRational(5, -2), -5, 2);
+		VerifyRational(CRational(-5, -2), 5, 2);
 	}
-}
-
-BOOST_AUTO_TEST_CASE(CanBeDefinedByNumeratorAndDenominator)
-{
+	BOOST_AUTO_TEST_CASE(is_normalized_after_construction)
 	{
-		CRational rational(5, 2);
-		BOOST_CHECK_EQUAL(rational.GetNumerator(), 5);
-		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
+		VerifyRational(CRational(6, 8), 3, 4);
+		VerifyRational(CRational(6, -8), -3, 4);
+		VerifyRational(CRational(-6, 8), -3, 4);
+		VerifyRational(CRational(-6, -8), 3, 4);
+		VerifyRational(CRational(-10, 20), -1, 2);
 	}
-	{
-		CRational rational(-5, 2);
-		BOOST_CHECK_EQUAL(rational.GetNumerator(), -5);
-		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
-	}
-	{
-		CRational rational(5, -2);
-		BOOST_CHECK_EQUAL(rational.GetNumerator(), -5);
-		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
-	}
-	{
-		CRational rational(-5, -2);
-		BOOST_CHECK_EQUAL(rational.GetNumerator(), 5);
-		BOOST_CHECK_EQUAL(rational.GetDenominator(), 2);
-	}
-}
 
 
 
@@ -248,47 +235,3 @@ BOOST_AUTO_TEST_CASE(CanBeDefinedByNumeratorAndDenominator)
 
 
 BOOST_AUTO_TEST_SUITE_END()
-
-BOOST_AUTO_TEST_CASE(TestGCD)
-{
-	BOOST_CHECK_EQUAL(GCD(2, 3), 1u);
-	BOOST_CHECK_EQUAL(GCD(3, 2), 1u);
-	BOOST_CHECK_EQUAL(GCD(12, 8), 4u);
-	BOOST_CHECK_EQUAL(GCD(8, 12), 4u);
-	BOOST_CHECK_EQUAL(GCD(0, 2), 2u);
-	BOOST_CHECK_EQUAL(GCD(2, 0), 2u);
-	BOOST_CHECK_EQUAL(GCD(0, 0), 1u);
-}
-
-BOOST_AUTO_TEST_CASE(RationalsAreNormalizedAfterCreation)
-{
-	{
-		CRational r(6, 8);
-		BOOST_CHECK_EQUAL(r.GetNumerator(), 3);
-		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
-	}
-
-	{
-		CRational r(6, -8);
-		BOOST_CHECK_EQUAL(r.GetNumerator(), -3);
-		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
-	}
-
-	{
-		CRational r(-6, 8);
-		BOOST_CHECK_EQUAL(r.GetNumerator(), -3);
-		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
-	}
-
-	{
-		CRational r(-6, -8);
-		BOOST_CHECK_EQUAL(r.GetNumerator(), 3);
-		BOOST_CHECK_EQUAL(r.GetDenominator(), 4);
-	}
-
-	{
-		CRational r(-10, 20);
-		BOOST_CHECK_EQUAL(r.GetNumerator(), -1);
-		BOOST_CHECK_EQUAL(r.GetDenominator(), 2);
-	}
-}

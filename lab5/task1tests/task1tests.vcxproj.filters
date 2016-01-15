@@ -32,10 +32,13 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="task1tests.cpp">
+    <ClCompile Include="..\task1\Rational.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\task1\Rational.cpp">
+    <ClCompile Include="RationalTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
