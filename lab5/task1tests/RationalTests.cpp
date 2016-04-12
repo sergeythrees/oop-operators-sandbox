@@ -57,6 +57,10 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		VerifyRational(CRational(-6, -8), 3, 4);
 		VerifyRational(CRational(-10, 20), -1, 2);
 	}
+	BOOST_AUTO_TEST_CASE(cant_have_zero_denominator)
+	{
+		BOOST_REQUIRE_THROW(CRational(1, 0), std::invalid_argument);
+	}
 
 
 
