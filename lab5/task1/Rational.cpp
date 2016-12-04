@@ -127,7 +127,29 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 12. Реализовать операторы <, >, <=, >=
 //////////////////////////////////////////////////////////////////////////
+bool operator >(CRational const& a, CRational const& b)
+{
+	int aNumerator = a.GetNumerator() * b.GetDenominator();
+	int bNumerator = b.GetNumerator() * a.GetDenominator();
+	return (aNumerator > bNumerator);
+}
 
+bool operator <(CRational const& a, CRational const& b)
+{
+	int aNumerator = a.GetNumerator() * b.GetDenominator();
+	int bNumerator = b.GetNumerator() * a.GetDenominator();
+	return (aNumerator < bNumerator);
+}
+
+bool operator >=(CRational const& a, CRational const& b)
+{
+	return !(a < b);
+}
+
+bool operator <=(CRational const& a, CRational const& b)
+{
+	return !(a > b);
+}
 
 
 
