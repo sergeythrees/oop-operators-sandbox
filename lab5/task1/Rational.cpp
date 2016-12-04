@@ -99,7 +99,12 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 8. Реализовать оператор /
 //////////////////////////////////////////////////////////////////////////
-
+CRational const operator /(CRational const& a, CRational const& b)
+{
+	int numerator = a.GetNumerator() * b.GetDenominator();
+	int denominator = a.GetDenominator() * b.GetNumerator();
+	return CRational(numerator, denominator);
+}
 
 
 

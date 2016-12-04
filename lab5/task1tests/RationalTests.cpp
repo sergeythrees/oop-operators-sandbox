@@ -163,7 +163,22 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) ⁄ 5     = (1/10)
 //	7 ⁄ (2/3)     = (21/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(division_operator)
+	BOOST_AUTO_TEST_SUITE(should_return_the_quotient_of)
+		BOOST_AUTO_TEST_CASE(two_rational_numbers)
+			{
+				VerifyRational(CRational(1, 2) / CRational(2, 3), 3, 4);
+			}
+		BOOST_AUTO_TEST_CASE(rational_number_and_integer)
+		{
+			VerifyRational(CRational(1, 2) / 5, 1, 10);
+		}
+		BOOST_AUTO_TEST_CASE(integer_and_rational_number)
+		{
+			VerifyRational(7 / CRational(2, 3), 21, 2);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
