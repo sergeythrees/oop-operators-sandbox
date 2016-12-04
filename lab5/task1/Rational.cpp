@@ -92,7 +92,12 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 7. Реализовать оператор *
 //////////////////////////////////////////////////////////////////////////
-
+CRational const operator *(CRational const& a, CRational const& b)
+{
+	int numerator = a.GetNumerator() * b.GetNumerator();
+	int denominator = a.GetDenominator() * b.GetDenominator();
+	return CRational(numerator, denominator);
+}
 
 
 
@@ -106,7 +111,11 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 9. Реализовать оператор *=
 //////////////////////////////////////////////////////////////////////////
-
+CRational & CRational::operator *=(CRational const& b)
+{
+	*this = *this * b;
+	return *this;
+}
 
 
 
