@@ -128,7 +128,26 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) += (1/6)  → (2/3)
 //	(1/2) += 1      → (3/2)
 //////////////////////////////////////////////////////////////////////////
+BOOST_AUTO_TEST_SUITE(plus_equal_operator)
+	BOOST_AUTO_TEST_SUITE(should_return_the_sum_and_add)
+		BOOST_AUTO_TEST_CASE(two_rational_numbers)
+		{
+			VerifyRational(CRational(1, 2) += CRational(1, 6), 2, 3);
+		}
+		BOOST_AUTO_TEST_CASE(integer_to_first_rational_number)
+		{
+			VerifyRational(CRational(1, 2) += 1, 3, 2);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
+	BOOST_AUTO_TEST_CASE(should_be_able_to_work_with_constants)
+	{
+		CRational a(3, 2);
+		CRational const b(3, 2);
 
+		VerifyRational(((a += b) += b), 9, 2);
+		VerifyRational(a, 9, 2);
+	}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
