@@ -117,7 +117,22 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	(1/2) - 1     = (-1/2)
 //	1 - (1/2)     = (1/2)
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(binary_operator_minus)
+	BOOST_AUTO_TEST_SUITE(should_return_the_complement_of)
+		BOOST_AUTO_TEST_CASE(two_rational_numbers)
+		{
+			VerifyRational(CRational(1, 2) - CRational(1, 6), 1, 3);
+		}
+		BOOST_AUTO_TEST_CASE(rational_number_and_integer)
+		{
+			VerifyRational(CRational(1, 2) - 1, -1, 2);
+		}
+		BOOST_AUTO_TEST_CASE(integer_and_rational_number)
+		{
+			VerifyRational(1 - CRational(1, 2), 1, 2);
+		}
+	BOOST_AUTO_TEST_SUITE_END()
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
