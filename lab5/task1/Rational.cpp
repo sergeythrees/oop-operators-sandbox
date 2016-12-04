@@ -1,8 +1,8 @@
 ﻿#include "stdafx.h"
 #include "Rational.h"
+#include <string>
 #include <utility>
 #include <stdexcept>
-
 
 CRational::CRational(int numerator, int denominator)
 	: m_numerator(numerator)
@@ -134,6 +134,11 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 13. Реализовать оператор вывода рационального числа в выходной поток 
 //////////////////////////////////////////////////////////////////////////
+std::ostream & operator <<(std::ostream &stream, CRational const& rational)
+{
+	stream << rational.GetNumerator() << "/" << rational.GetDenominator();
+	return stream;
+}
 
 
 

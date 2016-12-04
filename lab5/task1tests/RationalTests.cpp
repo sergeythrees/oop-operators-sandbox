@@ -227,7 +227,14 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 //	std::ostream в формате <числитель>/<знаменатель>, 
 //	например: 7/15
 //////////////////////////////////////////////////////////////////////////
-
+BOOST_AUTO_TEST_SUITE(output_operator)
+	BOOST_AUTO_TEST_CASE(should_output_the_rational_number_in_the_stream)
+	{
+		std::stringstream output = std::stringstream();
+		output << CRational(7,15);
+		BOOST_CHECK_EQUAL(output.str(), "7/15");
+	}
+BOOST_AUTO_TEST_SUITE_END()
 
 
 
