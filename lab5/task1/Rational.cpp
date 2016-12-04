@@ -120,6 +120,15 @@ unsigned GCD(unsigned a, unsigned b)
 //////////////////////////////////////////////////////////////////////////
 // TODO: 11. Реализовать операторы == и !=
 //////////////////////////////////////////////////////////////////////////
+bool operator ==(CRational const& a, CRational const& b)
+{
+	return ((a.GetNumerator() == b.GetNumerator()) && (a.GetDenominator() == b.GetDenominator()));
+}
+
+bool operator !=(CRational const& a, CRational const& b)
+{
+	return !(a == b);
+}
 
 
 
